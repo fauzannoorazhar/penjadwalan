@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
+use kartik\form\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Guru */
@@ -9,7 +9,7 @@ use yii\bootstrap\ActiveForm;
 ?>
 
 <?php $form = ActiveForm::begin([
-    'layout'=>'horizontal',
+    'type' => ActiveForm::TYPE_HORIZONTAL,
     'enableAjaxValidation'=>false,
     'enableClientValidation'=>false,
     'fieldConfig' => [
@@ -35,7 +35,7 @@ use yii\bootstrap\ActiveForm;
 
         <?= $form->field($model, 'alamat')->textarea(['rows' => 6]) ?>
 
-        <?= $form->field($model, 'telpon')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'telpon')->textInput(['maxlength' => true]); ?>
 
         <?= Html::hiddenInput('referrer',$referrer); ?>
 

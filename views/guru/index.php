@@ -1,7 +1,8 @@
 <?php
 
-use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Html;
+use yii\helpers\StringHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\GuruSearch */
@@ -32,13 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['style' => 'text-align:center'],
                 'contentOptions' => ['style' => 'text-align:center']
             ],
-
-            [
-                'attribute' => 'id',
-                'format' => 'raw',
-                'headerOptions' => ['style' => 'text-align:center;'],
-                'contentOptions' => ['style' => 'text-align:center;'],
-            ],
             [
                 'attribute' => 'nama',
                 'format' => 'raw',
@@ -48,8 +42,11 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'alamat',
                 'format' => 'raw',
+                'value' => function($data) {
+                    return StringHelper::truncate($data->alamat, 50);
+                },
                 'headerOptions' => ['style' => 'text-align:center;'],
-                'contentOptions' => ['style' => 'text-align:center;'],
+                'contentOptions' => ['style' => 'text-align:left;'],
             ],
             [
                 'attribute' => 'telpon',
