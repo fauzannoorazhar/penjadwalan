@@ -33,9 +33,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => $model->id_kelas,
             ],
             [
-                'attribute' => 'hari',
+                'attribute' => 'id_hari',
                 'format' => 'raw',
-                'value' => $model->hari,
+                'value' => $model->id_hari,
             ],
         ],
     ]) ?>

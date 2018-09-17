@@ -76,5 +76,33 @@ class JurusanAngkatanSearch extends JurusanAngkatan
         return $dataProvider;
     }
 
+    public function searchJurusan($params)
+    {
+        $query = JurusanAngkatan::find();
+        $query->joinWith('kelas');
+        $query->andWhere('kelas.id_jurusan_angkatan IS NULL');
+
+        $this->load($params);
+
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'tahun' => $this->tahun,
+        ]);
+
+        $query->andFilterWhere(['like', 'nama', $this->nama]);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to return any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);        
+
+        return $dataProvider;
+    }
+
 
 }

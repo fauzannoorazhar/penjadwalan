@@ -45,4 +45,9 @@ class JurusanAngkatan extends \yii\db\ActiveRecord
             'tahun' => 'Tahun Angkatan',
         ];
     }
+
+    public function getKelas()
+    {
+        return $this->hasOne(Kelas::class,['id_jurusan_angkatan' => 'id']);
+    }
 }

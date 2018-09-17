@@ -5,20 +5,19 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "kelas_hari".
+ * This is the model class for table "hari".
  *
  * @property int $id
- * @property int $id_kelas
- * @property int $id_hari
+ * @property string $nama
  */
-class KelasHari extends \yii\db\ActiveRecord
+class Hari extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'kelas_hari';
+        return 'hari';
     }
 
     /**
@@ -27,8 +26,8 @@ class KelasHari extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_kelas', 'id_hari'], 'required'],
-            [['id_kelas', 'id_hari'], 'integer'],
+            [['nama'], 'required'],
+            [['nama'], 'string', 'max' => 255],
         ];
     }
 
@@ -39,8 +38,7 @@ class KelasHari extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_kelas' => 'Id Kelas',
-            'id_hari' => 'Id Hari',
+            'nama' => 'Nama',
         ];
     }
 }

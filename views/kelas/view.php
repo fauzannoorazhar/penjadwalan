@@ -23,19 +23,29 @@ $this->params['breadcrumbs'][] = $this->title;
         'template' => '<tr><th width="180px" style="text-align:right">{label}</th><td>{value}</td></tr>',
         'attributes' => [
             [
-                'attribute' => 'id',
-                'format' => 'raw',
-                'value' => $model->id,
-            ],
-            [
-                'attribute' => 'nama',
-                'format' => 'raw',
-                'value' => $model->nama,
-            ],
-            [
                 'attribute' => 'id_jurusan_angkatan',
                 'format' => 'raw',
-                'value' => $model->id_jurusan_angkatan,
+                'value' => @$model->jurusanAngkatan->nama,
+            ],
+            [
+                'attribute' => 'created_at',
+                'format' => 'raw',
+                'value' => Yii::$app->formatter->asRelativeTime($model->created_at),
+            ],
+            [
+                'attribute' => 'updated_at',
+                'format' => 'raw',
+                'value' => Yii::$app->formatter->asRelativeTime($model->updated_at),
+            ],
+            [
+                'attribute' => 'created_by',
+                'format' => 'raw',
+                'value' => @$model->userCreate->username,
+            ],
+            [
+                'attribute' => 'updated_by',
+                'format' => 'raw',
+                'value' => @$model->userUpdate->username,
             ],
         ],
     ]) ?>
@@ -43,7 +53,6 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <div class="box-footer">
-        <?= Html::a('<i class="fa fa-pencil"></i> Sunting Kelas', ['update', 'id' => $model->id], ['class' => 'btn btn-success btn-flat']) ?>
         <?= Html::a('<i class="fa fa-list"></i> Daftar Kelas', ['index'], ['class' => 'btn btn-warning btn-flat']) ?>
     </div>
 

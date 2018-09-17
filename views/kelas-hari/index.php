@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'contentOptions' => ['style' => 'text-align:center;'],
             ],
             [
-                'attribute' => 'hari',
+                'attribute' => 'id_hari',
                 'format' => 'raw',
                 'headerOptions' => ['style' => 'text-align:center;'],
                 'contentOptions' => ['style' => 'text-align:center;'],

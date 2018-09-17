@@ -33,7 +33,7 @@ use yii\bootstrap\ActiveForm;
 
         <?= $form->field($model, 'id_kelas')->textInput() ?>
 
-        <?= $form->field($model, 'hari')->textInput() ?>
+        <?= $form->field($model, 'id_hari')->textInput() ?>
 
         <?= Html::hiddenInput('referrer',$referrer); ?>
 

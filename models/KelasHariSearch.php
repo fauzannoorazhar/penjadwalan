@@ -18,7 +18,7 @@ class KelasHariSearch extends KelasHari
     public function rules()
     {
         return [
-            [['id', 'id_kelas', 'hari'], 'integer'],
+            [['id', 'id_kelas', 'id_hari'], 'integer'],
         ];
     }
 
@@ -51,7 +51,7 @@ class KelasHariSearch extends KelasHari
         $query->andFilterWhere([
             'id' => $this->id,
             'id_kelas' => $this->id_kelas,
-            'hari' => $this->hari,
+            'id_hari' => $this->id_hari,
         ]);
 
         return $query;

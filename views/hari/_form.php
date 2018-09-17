@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Kelas */
+/* @var $model app\models\Hari */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -22,24 +22,16 @@ use yii\bootstrap\ActiveForm;
     ]
 ]); ?>
 
-<div class="kelas-form box box-primary">
+<div class="hari-form box box-primary">
 
     <div class="box-header">
-        <h3 class="box-title">Form Kelas</h3>
+        <h3 class="box-title">Form Hari</h3>
     </div>
 	<div class="box-body">
 
         <?= $form->errorSummary($model); ?>
 
-        <?= $form->field($model, 'id_jurusan_angkatan')->textInput() ?>
-
-        <?= $form->field($model, 'created_at')->textInput() ?>
-
-        <?= $form->field($model, 'updated_at')->textInput() ?>
-
-        <?= $form->field($model, 'created_by')->textInput() ?>
-
-        <?= $form->field($model, 'updated_by')->textInput() ?>
+        <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
 
         <?= Html::hiddenInput('referrer',$referrer); ?>
 

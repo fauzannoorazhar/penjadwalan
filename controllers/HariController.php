@@ -3,17 +3,17 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\KelasHari;
-use app\models\KelasHariSearch;
+use app\models\Hari;
+use app\models\HariSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
 /**
- * KelasHariController implements the CRUD actions for KelasHari model.
+ * HariController implements the CRUD actions for Hari model.
  */
-class KelasHariController extends Controller
+class HariController extends Controller
 {
     /**
      * @inheritdoc
@@ -41,12 +41,12 @@ class KelasHariController extends Controller
     }
 
     /**
-     * Lists all KelasHari models.
+     * Lists all Hari models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new KelasHariSearch();
+        $searchModel = new HariSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         if(Yii::$app->request->get('export')) {
@@ -60,7 +60,7 @@ class KelasHariController extends Controller
     }
 
     /**
-     * Displays a single KelasHari model.
+     * Displays a single Hari model.
      * @param integer $id
      * @return mixed
      */
@@ -72,13 +72,13 @@ class KelasHariController extends Controller
     }
 
     /**
-     * Creates a new KelasHari model.
+     * Creates a new Hari model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new KelasHari();
+        $model = new Hari();
 
         $referrer = Yii::$app->request->referrer;
 
@@ -103,7 +103,7 @@ class KelasHariController extends Controller
     }
 
     /**
-     * Updates an existing KelasHari model.
+     * Updates an existing Hari model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -137,7 +137,7 @@ class KelasHariController extends Controller
     }
 
     /**
-     * Deletes an existing KelasHari model.
+     * Deletes an existing Hari model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -158,15 +158,15 @@ class KelasHariController extends Controller
     }
 
     /**
-     * Finds the KelasHari model based on its primary key value.
+     * Finds the Hari model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return KelasHari the loaded model
+     * @return Hari the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = KelasHari::findOne($id)) !== null) {
+        if (($model = Hari::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
@@ -195,41 +195,38 @@ class KelasHariController extends Controller
 
         $sheet->getColumnDimension('A')->setWidth(10);
         $sheet->getColumnDimension('B')->setWidth(20);
-        $sheet->getColumnDimension('C')->setWidth(20);
 
         $sheet->setCellValue('A3', 'No');
-        $sheet->setCellValue('B3', 'Id Kelas');
-        $sheet->setCellValue('C3', 'Id Hari');
+        $sheet->setCellValue('B3', 'Nama');
 
-        $PHPExcel->getActiveSheet()->setCellValue('A1', 'Data KelasHari');
+        $PHPExcel->getActiveSheet()->setCellValue('A1', 'Data Hari');
 
-        $PHPExcel->getActiveSheet()->mergeCells('A1:C1');
+        $PHPExcel->getActiveSheet()->mergeCells('A1:B1');
 
-        $sheet->getStyle('A1:C3')->getFont()->setBold(true);
-        $sheet->getStyle('A1:C3')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $sheet->getStyle('A1:B3')->getFont()->setBold(true);
+        $sheet->getStyle('A1:B3')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 
         $row = 3;
         $i=1;
 
-        $searchModel = new KelasHariSearch();
+        $searchModel = new HariSearch();
 
         foreach($searchModel->getQuerySearch($params)->all() as $data){
             $row++;
             $sheet->setCellValue('A' . $row, $i);
-            $sheet->setCellValue('B' . $row, $data->id_kelas);
-            $sheet->setCellValue('C' . $row, $data->id_hari);
+            $sheet->setCellValue('B' . $row, $data->nama);
             
             $i++;
         }
 
-        $sheet->getStyle('A3:C' . $row)->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-        $sheet->getStyle('D3:C' . $row)->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-        $sheet->getStyle('E3:C' . $row)->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $sheet->getStyle('A3:B' . $row)->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $sheet->getStyle('D3:B' . $row)->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $sheet->getStyle('E3:B' . $row)->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 
 
         $sheet->getStyle('C' . $row)->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 
-        $sheet->getStyle('A3:C' . $row)->applyFromArray($setBorderArray);
+        $sheet->getStyle('A3:B' . $row)->applyFromArray($setBorderArray);
 
         $path = 'exports/';
         $filename = time() . '_DataPenduduk.xlsx';

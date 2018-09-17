@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Kelas;
+use app\models\Hari;
 
 /**
- * KelasSearch represents the model behind the search form of `app\models\Kelas`.
+ * HariSearch represents the model behind the search form of `app\models\Hari`.
  */
-class KelasSearch extends Kelas
+class HariSearch extends Hari
 {
     /**
      * @inheritdoc
@@ -18,7 +18,8 @@ class KelasSearch extends Kelas
     public function rules()
     {
         return [
-            [['id', 'id_jurusan_angkatan', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['id'], 'integer'],
+            [['nama'], 'safe'],
         ];
     }
 
@@ -41,7 +42,7 @@ class KelasSearch extends Kelas
 
     public function getQuerySearch($params)
     {
-        $query = Kelas::find();
+        $query = Hari::find();
 
         $this->load($params);
 
@@ -50,12 +51,9 @@ class KelasSearch extends Kelas
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'id_jurusan_angkatan' => $this->id_jurusan_angkatan,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'created_by' => $this->created_by,
-            'updated_by' => $this->updated_by,
         ]);
+
+        $query->andFilterWhere(['like', 'nama', $this->nama]);
 
         return $query;
     }
