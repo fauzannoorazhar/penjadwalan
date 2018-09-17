@@ -27,6 +27,7 @@ class JurusanAngkatan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['nama', 'tahun'], 'unique', 'targetAttribute' => ['nama', 'tahun']],
             [['nama', 'tahun'], 'required'],
             [['tahun'], 'safe'],
             [['nama'], 'string', 'max' => 255],
@@ -40,8 +41,8 @@ class JurusanAngkatan extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'nama' => 'Nama',
-            'tahun' => 'Tahun',
+            'nama' => 'Nama Jurusan',
+            'tahun' => 'Tahun Angkatan',
         ];
     }
 }
