@@ -21,13 +21,13 @@ use yii\helpers\Html;
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="<?= Yii::getAlias('@web').'/images/makarti.png'; ?>" style="width: 25px" alt="User Image"/>
+                        <img src="<?= Yii::getAlias('@web').'/images/avatar.png'; ?>" style="width: 17px" alt="User Image"/>
                         <span class="hidden-xs"><?= Yii::$app->user->identity->username ?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img style="width: 110px" src="<?= Yii::getAlias('@web').'/images/makarti.png'; ?>"
+                            <img style="width: 110px; height: 100px" src="<?= Yii::getAlias('@web').'/images/avatar.png'; ?>"
                                  alt="User Image"/>
                         </li>
 

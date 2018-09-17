@@ -20,9 +20,8 @@ $fieldOptions2 = [
 ?>
 <div class="login-box">
     <div class="login-logo">
-        <img src="<?php echo Yii::$app->request->baseUrl; ?>/images/makarti.png" style="width: 125px">
         <br>
-        <a href="#">SIP<b>LAN</b></a>
+        <a href="#">PEN<b>JADWALAN</b></a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
