@@ -28,6 +28,7 @@ class Guru extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            ['guru','unique'],
             [['nama', 'alamat', 'telpon'], 'required'],
             [['alamat'], 'string'],
             [['nama', 'telpon'], 'string', 'max' => 255],
